@@ -1,0 +1,1147 @@
+/* Für die Grössen mit rem und weiteres teilweise KI benutzt als hilfe*/
+/* -------------------------------------------
+   FARBEN
+   ------------------------------------------- */
+:root {
+  --teal:    #7FA9AE;
+  --blue:    #6B9AC4;
+  --yellow:  #F6E7A1;
+  --light:   #D6E0EA;
+  --dark:    #2F3E46;
+  --white:   #ffffff;
+}
+
+.yellow { color: var(--yellow); }
+.teal { color: var(--teal);   }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: var(--white);
+  color: var(--dark);
+}
+
+
+/* -------------------------------------------
+   HEADER
+   ------------------------------------------- */
+.header {
+  background: var(--blue);
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  gap: 0.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+/* -------------------------------------------
+   LOGO
+   ------------------------------------------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-name {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.07em;
+  color: var(--yellow);
+}
+
+.logo-sub {
+  font-size: 0.58rem;
+  opacity: 0.85;
+  color: var(--yellow);
+}
+
+
+/* -------------------------------------------
+   NAVIGATION (Desktop)
+   ------------------------------------------- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  margin-left: 0.25rem;
+}
+
+.nav a {
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--white);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.15rem;
+}
+
+.nav a.active {
+  background: var(--dark);
+  font-weight: 600;
+}
+
+.nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav a.active:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+
+/* -------------------------------------------
+   HAMBURGER-MENÜ (nur Mobile)
+   ------------------------------------------- */
+#nav-toggle {
+  display: none;
+}
+
+.nav-label {
+  display: none;
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: var(--white);
+  padding: 0 0.25rem;
+  user-select: none;
+  position: static;
+  inset: auto;
+  font-family: inherit;
+  text-shadow: none;
+  letter-spacing: 0;
+  line-height: 1;
+  pointer-events: auto;
+}
+
+
+/* -------------------------------------------
+   WRAPPER
+   ------------------------------------------- */
+.wrapper {
+  width: 90%;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+  min-height: calc(100vh - 3.2rem - 2.5rem);
+}
+
+
+/* -------------------------------------------
+   SEITENTITEL
+   ------------------------------------------- */
+.page-title {
+  text-align: center;
+  padding: 2.5rem 1.25rem 0;
+}
+
+.page-title h1 {
+  font-family: 'Bevan', serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  letter-spacing: 0.12em;
+  line-height: 1.1;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.title-line {
+  width: 14rem;
+  height: 7px;
+  border-radius: 4px;
+  background: var(--yellow);
+  margin: 0.875rem auto 0;
+}
+
+
+/* -------------------------------------------
+   ABSCHNITTS-ÜBERSCHRIFT
+   ------------------------------------------- */
+.section-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  letter-spacing: 0.03em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.section-title.center {
+  text-align: center;
+}
+
+.divider {
+  width: 13rem;
+  height: 6px;
+  background: var(--yellow);
+  border-radius: 4px;
+  margin: 1.5rem auto;
+}
+
+
+/* -------------------------------------------
+   TEXTBOX
+   ------------------------------------------- */
+.textbox {
+  background: var(--light);
+  border-radius: 0.875rem;
+  padding: 0.875rem 1rem;
+  font-weight: 600;
+  font-size: clamp(0.78rem, 1.1vw, 0.93rem);
+  line-height: 1.6;
+  flex: 1;
+}
+
+
+/* -------------------------------------------
+   ABSCHNITT + BILD-TEXT LAYOUT
+   ------------------------------------------- */
+.section {
+  padding: 0 1.25rem;
+}
+
+.section.top {
+  padding-top: 2rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.row.flip {
+  flex-direction: row-reverse;
+}
+
+/* Alle Bilder in .row skalieren proportional */
+.row img {
+  object-fit: cover;
+  border-radius: 0.25rem;
+  flex-shrink: 0;
+}
+
+
+/* -------------------------------------------
+   ÜBER MICH – Bilder (alle proportional skalierend)
+   width = responsive, height = auto + aspect-ratio --> KI
+   
+   ------------------------------------------- */
+.img-person {
+  width: clamp(8rem, 12vw, 11rem);
+  height: auto;
+  object-fit: contain;
+}
+
+/* KI */
+.row img.img-person {
+  object-fit: contain;
+}
+
+
+.img-school {
+  width: clamp(7rem, 9vw, 10rem);
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+}
+
+/*KI --> für bessere struktur*/
+.school-row-desktop .img-school {
+  width: 12rem;
+  
+  flex: 0 0 13rem;
+}
+
+.img-interest {
+  width: clamp(8rem, 11vw, 11rem);
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Familienbild */
+.img-family {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+/* Schule/Arbeit Kopfzeile */
+.school-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+}
+
+/* Zwei Textboxen nebeneinander */
+.two-boxes {
+  display: flex;
+  flex: 1;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+
+
+
+/* Video-Box: passt sich dem Layout an */
+.video-box {
+  flex-shrink: 0;
+  width: clamp(10rem, 18vw, 18rem);
+  aspect-ratio: 9 / 16;
+  background: #000;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.875rem;
+}
+
+/* Interessen-Liste */
+.interest-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+
+/* -------------------------------------------
+   FÄHIGKEITEN – Skill-Karten
+   ------------------------------------------- */
+.skills-section {
+  padding: 1.75rem 1.25rem 0;
+}
+
+.cards-wrap {
+  background: var(--light);
+  border-radius: 1rem;
+  padding: 1.5rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.cards-top {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cards-bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 66%;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--teal);
+  border-radius: 0.875rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.card-body {
+  padding: 0.625rem 0.75rem 0.875rem;
+  flex: 1;
+}
+
+.card-name {
+  font-family: 'Baloo Chettan 2', cursive;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  color: var(--white);
+  margin-bottom: 0.3rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.card-text {
+  font-size: clamp(0.72rem, 1vw, 0.88rem);
+  color: var(--white);
+  line-height: 1.5;
+}
+
+
+/* -------------------------------------------
+   PORTFOLIO – Projekt-Karten
+   ------------------------------------------- */
+.intro-box {
+  background: var(--light);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  margin: 1.75rem 1.25rem 0;
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.projects-wrap {
+  background: var(--light);
+  border-radius: 1rem;
+  padding: 1.5rem 1.25rem 1.75rem;
+  margin: 1.25rem 1.25rem 0;
+}
+
+.projects-top {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.projects-bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 68%;
+  margin: 0 auto;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.project img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.project-body {
+  padding: 0.6rem 0.75rem 0.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.project-name {
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  line-height: 1.2;
+}
+
+.project-desc {
+  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.project-link {
+  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  color: var(--dark);
+  text-decoration: none;
+  margin-top: 0.3rem;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+.project-link::after {
+  content: ' →';
+}
+
+.bg-blue   { background: var(--blue); }
+.bg-yellow { background: var(--yellow); }
+
+
+/* -------------------------------------------
+   STARTSEITE – Hero
+   ------------------------------------------- */
+.hero {
+  padding: 3rem 1.875rem 1.5rem;
+}
+
+.welcome {
+  text-align: center;
+  font-family: 'Bevan', serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  color: var(--teal);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.612);
+  letter-spacing: 0.05em;
+  margin-bottom: 1.75rem;
+}
+
+.hero-cols {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.hero-img {
+  flex-shrink: 0;
+}
+
+.hero-img img {
+  width: clamp(12rem, 22vw, 22rem);
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.hero-line {
+  width: 100%;
+  height: 5px;
+  background: var(--yellow);
+  border-radius: 4px;
+  margin-top: 0.875rem;
+}
+
+.letters {
+  display: grid;
+  grid-template-columns: repeat(3, clamp(2rem, 3vw, 3rem));
+  grid-template-rows: repeat(6, clamp(2rem, 3vw, 3rem));
+  gap: 2px;
+  margin-left: auto;
+  padding-top: 0.25rem;
+}
+
+.letters span {
+  font-family: 'Bevan', serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+/* -------------------------------------------
+   STARTSEITE – "Starten mit…" Karten
+   ------------------------------------------- */
+.start-section {
+  padding: 1.5rem 1.875rem 2.5rem;
+}
+
+.start-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  letter-spacing: 0.03em;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.nav-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.nav-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+
+.nav-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  display: block;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.35);
+  filter: brightness(0.75);
+}
+
+.nav-card:hover img {
+  filter: brightness(0.9);
+}
+
+.nav-card .nav-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Bevan', serif;
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  color: var(--dark);
+  text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  padding: 0.5rem;
+  pointer-events: none;
+  margin-left: 0;
+  cursor: default;
+  user-select: none;
+}
+
+
+/* -------------------------------------------
+   KONTAKT-SEITE
+   ------------------------------------------- */
+body.kontakt {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body.kontakt .footer {
+  margin-top: auto;
+}
+
+.contact-wrap {
+  flex: 1;
+  display: flex;
+}
+
+.sidebar {
+  background: var(--dark);
+  color: var(--white);
+  width: clamp(14rem, 28%, 20rem);
+  min-width: 13rem;
+  padding: 2.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar h2 {
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.sidebar p {
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 2.5rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.contact-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.contact-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.contact-item span {
+  font-family: 'Baloo Chettan 2', cursive;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.8rem;
+}
+
+.social {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--white);
+  border-radius: 0.35rem;
+}
+
+.social svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+/* Rechts: Formular */
+.form-wrap {
+  flex: 1;
+  padding: 2.5rem 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-wrap h1 {
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.18);
+  margin-bottom: 1rem;
+}
+
+.form-wrap .title-line {
+  margin-bottom: 1.75rem;
+}
+
+.form-inner {
+  background: var(--light);
+  border-radius: 1rem;
+  padding: 1.75rem 2rem 2rem;
+  width: 100%;
+  max-width: 32rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field label {
+  font-weight: 500;
+  font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  background: var(--white);
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(0.82rem, 1vw, 0.9rem);
+  color: var(--dark);
+  outline: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+  box-shadow: 0 0 0 2px var(--teal);
+}
+
+.field textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+
+/* -------------------------------------------
+   FOOTER
+   ------------------------------------------- */
+.footer {
+  background: var(--dark);
+  color: var(--white);
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  font-size: 0.7rem;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.footer-brand {
+  color: var(--yellow);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.footer-sub {
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+.footer-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  opacity: 0.85;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: block;
+  fill: none;
+}
+
+.footer-icon.linkedin {
+  fill: white;
+}
+
+
+/* -------------------------------------------
+   SCHULE / ARBEIT DESKTOP / MOBILE
+   ------------------------------------------- */
+.school-mobile-wrap {
+  display: none;
+}
+
+.school-row-desktop {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* play button placeholder */
+.play {
+  width: 0;
+  height: 0;
+  border-top: 0.75rem solid transparent;
+  border-bottom: 0.75rem solid transparent;
+  border-left: 1.25rem solid var(--teal);
+  margin-left: 0.2rem;
+}
+
+
+/* -------------------------------------------
+   AUSGELAGERTE INLINE-STYLES
+   ------------------------------------------- */
+.row--spaced,
+.textbox--spaced {
+  margin-top: 1rem;
+}
+
+.video-box--mobile {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+.letter--hidden {
+  visibility: hidden;
+}
+
+
+/* -------------------------------------------
+   RESPONSIVE – Tablet (601px – 900px)
+   ------------------------------------------- */
+@media (min-width: 601px) and (max-width: 900px) {
+
+  .wrapper {
+    width: 92%;
+  }
+
+  .nav-label {
+    display: block;
+    position: static !important;
+    inset: auto !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 1.4rem !important;
+    color: var(--white) !important;
+    text-shadow: none !important;
+    letter-spacing: 0 !important;
+    line-height: 1 !important;
+    padding: 0 0.25rem !important;
+    margin-left: auto;
+    pointer-events: auto !important;
+    background: none !important;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 3.2rem;
+    left: 0;
+    right: 0;
+    background: var(--blue);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+    gap: 0;
+    z-index: 99;
+  }
+
+  #nav-toggle:checked ~ .header .nav {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+
+  /* Auf Tablet: Schule/Arbeit Desktop-Layout ausblenden, Mobile einblenden */
+  .school-row-desktop { display: none !important; }
+  .school-head { display: none; }
+  .school-mobile-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .school-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .school-block-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  }
+  .img-school {
+    width: clamp(6rem, 20vw, 12rem);
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Über mich Bilder auf Tablet */
+  .img-person  { width: clamp(8rem, 16vw, 12rem); }
+  .img-interest{ width: clamp(8rem, 14vw, 11rem); }
+
+  /* Video auf Tablet */
+  .video-box--mobile {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Fähigkeiten: 2 Spalten statt 3 */
+  .cards-top { grid-template-columns: repeat(2, 1fr); }
+  .cards-bottom { max-width: 100%; grid-template-columns: repeat(2, 1fr); }
+
+  /* Portfolio: 2 Spalten */
+  .projects-top    { grid-template-columns: repeat(2, 1fr); }
+  .projects-bottom { max-width: 100%; grid-template-columns: repeat(2, 1fr); }
+
+  /* Startseite: Buchstaben-Raster etwas kleiner */
+  .letters {
+    grid-template-columns: repeat(3, clamp(1.8rem, 2.5vw, 2.5rem));
+    grid-template-rows:    repeat(6, clamp(1.8rem, 2.5vw, 2.5rem));
+  }
+
+  /* Startseite Nav-Karten: 2 Spalten bleibt */
+  .nav-card img {
+    aspect-ratio: 2 / 1;
+  }
+
+  /* Kontakt: Sidebar schmaler */
+  .sidebar { width: clamp(12rem, 30%, 16rem); }
+}
+
+
+/* -------------------------------------------
+   RESPONSIVE – Handy (unter 600px)
+   ------------------------------------------- */
+@media (max-width: 600px) {
+
+  .wrapper {
+    width: 94%;
+  }
+
+  .nav-label {
+    display: block;
+    position: static !important;
+    inset: auto !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 1.4rem !important;
+    color: var(--white) !important;
+    text-shadow: none !important;
+    letter-spacing: 0 !important;
+    line-height: 1 !important;
+    padding: 0 0.25rem !important;
+    margin-left: auto;
+    pointer-events: auto !important;
+    background: none !important;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 3.2rem;
+    left: 0;
+    right: 0;
+    background: var(--blue);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+    gap: 0;
+    z-index: 99;
+  }
+
+  #nav-toggle:checked ~ .header .nav {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+
+  /* Über mich: alles untereinander */
+  .two-boxes { flex-direction: column; }
+  .row,
+  .row.flip  { flex-direction: column; }
+
+  /* Bilder auf Mobile: volle Breite, proportional */
+  .img-person,
+  .img-interest {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+  }
+
+  .img-person {
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+  /* Schule/Arbeit: Desktop-Version ausblenden, Mobile einblenden */
+  .school-row-desktop { display: none !important; }
+  .school-head { display: none; }
+  .school-mobile-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .school-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .school-block-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  }
+  .img-school {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Video auf Mobile */
+  .video-box--mobile {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  /* Fähigkeiten: auf Handy 2 Spalten */
+  .cards-top { grid-template-columns: 1fr 1fr; }
+  .cards-bottom { max-width: 100%; }
+
+  /* Portfolio */
+  .projects-top    { grid-template-columns: 1fr 1fr; }
+  .projects-bottom { max-width: 100%; }
+
+  /* Startseite: Hero untereinander */
+  .hero-cols {
+    flex-direction: column;
+  }
+  .hero-img img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+  }
+  .hero-line {
+    width: 100%;
+  }
+  .letters {
+    margin: 1rem auto 0;
+    grid-template-columns: repeat(3, clamp(2.5rem, 12vw, 4rem));
+    grid-template-rows: repeat(6, clamp(2.5rem, 12vw, 4rem));
+  }
+  .letters span {
+    font-size: clamp(1.8rem, 9vw, 3rem);
+  }
+
+  /* Startseite Nav-Karten = KI */
+  .nav-card img {
+    aspect-ratio: 2 / 1;
+  }
+
+  /* Kontakt */
+  .contact-wrap { flex-direction: column; }
+  .sidebar { width: 100%; min-width: unset; }
+  .contact-info { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+}
+
+@media (max-width: 400px) {
+  .cards-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 380px) {
+  .projects-top { grid-template-columns: 1fr; }
+}
