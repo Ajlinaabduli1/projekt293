@@ -248,7 +248,7 @@ body {
 /* -------------------------------------------
    ÜBER MICH – Bilder (alle proportional skalierend)
    width = responsive, height = auto + aspect-ratio --> KI
-   
+
    ------------------------------------------- */
 .img-person {
   width: clamp(8rem, 12vw, 11rem);
@@ -272,7 +272,6 @@ body {
 /*KI --> für bessere struktur*/
 .school-row-desktop .img-school {
   width: 12rem;
-  
   flex: 0 0 13rem;
 }
 
@@ -307,8 +306,6 @@ body {
   gap: 0.75rem;
   min-width: 0;
 }
-
-
 
 
 /* Video-Box: passt sich dem Layout an */
@@ -1058,14 +1055,13 @@ body.kontakt .footer {
   .img-interest {
     width: 100%;
     aspect-ratio: 4 / 3;
-
   }
 
   .img-person {
-  height: auto;
-  aspect-ratio: auto;
-  object-fit: contain;
-}
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
 
   /* Schule/Arbeit: Desktop-Version ausblenden, Mobile einblenden */
   .school-row-desktop { display: none !important; }
