@@ -123,7 +123,8 @@ body {
   display: none;
 }
 
-.nav-label {
+/* Hamburger-Button (☰) – nur im Header sichtbar auf Mobile */
+.hamburger-label {
   display: none;
   margin-left: auto;
   cursor: pointer;
@@ -131,11 +132,6 @@ body {
   color: var(--white);
   padding: 0 0.25rem;
   user-select: none;
-  position: static;
-  inset: auto;
-  font-family: inherit;
-  text-shadow: none;
-  letter-spacing: 0;
   line-height: 1;
   pointer-events: auto;
 }
@@ -247,8 +243,6 @@ body {
 
 /* -------------------------------------------
    ÜBER MICH – Bilder (alle proportional skalierend)
-   width = responsive, height = auto + aspect-ratio --> KI
-
    ------------------------------------------- */
 .img-person {
   width: clamp(8rem, 12vw, 11rem);
@@ -256,11 +250,9 @@ body {
   object-fit: contain;
 }
 
-/* KI */
 .row img.img-person {
   object-fit: contain;
 }
-
 
 .img-school {
   width: clamp(7rem, 9vw, 10rem);
@@ -269,7 +261,6 @@ body {
   object-fit: contain;
 }
 
-/*KI --> für bessere struktur*/
 .school-row-desktop .img-school {
   width: 12rem;
   flex: 0 0 13rem;
@@ -396,12 +387,16 @@ body {
   color: var(--white);
   margin-bottom: 0.3rem;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .card-text {
   font-size: clamp(0.72rem, 1vw, 0.88rem);
   color: var(--white);
   line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 
@@ -604,7 +599,8 @@ body {
   filter: brightness(0.9);
 }
 
-.nav-card .nav-label {
+/* Karten-Label (Overlay-Text auf den Startseiten-Karten) */
+.nav-card .card-label {
   position: absolute;
   inset: 0;
   display: flex;
@@ -619,7 +615,6 @@ body {
   line-height: 1.2;
   padding: 0.5rem;
   pointer-events: none;
-  margin-left: 0;
   cursor: default;
   user-select: none;
 }
@@ -899,20 +894,8 @@ body.kontakt .footer {
     width: 92%;
   }
 
-  .nav-label {
+  .hamburger-label {
     display: block;
-    position: static !important;
-    inset: auto !important;
-    font-family: 'Roboto', sans-serif !important;
-    font-size: 1.4rem !important;
-    color: var(--white) !important;
-    text-shadow: none !important;
-    letter-spacing: 0 !important;
-    line-height: 1 !important;
-    padding: 0 0.25rem !important;
-    margin-left: auto;
-    pointer-events: auto !important;
-    background: none !important;
   }
 
   .nav {
@@ -1006,20 +989,8 @@ body.kontakt .footer {
     width: 94%;
   }
 
-  .nav-label {
+  .hamburger-label {
     display: block;
-    position: static !important;
-    inset: auto !important;
-    font-family: 'Roboto', sans-serif !important;
-    font-size: 1.4rem !important;
-    color: var(--white) !important;
-    text-shadow: none !important;
-    letter-spacing: 0 !important;
-    line-height: 1 !important;
-    padding: 0 0.25rem !important;
-    margin-left: auto;
-    pointer-events: auto !important;
-    background: none !important;
   }
 
   .nav {
@@ -1123,7 +1094,7 @@ body.kontakt .footer {
     font-size: clamp(1.8rem, 9vw, 3rem);
   }
 
-  /* Startseite Nav-Karten = KI */
+  /* Startseite Nav-Karten */
   .nav-card img {
     aspect-ratio: 2 / 1;
   }
@@ -1143,4 +1114,4 @@ body.kontakt .footer {
 }
 
 
-/*mit Ki oft aufgeräumt*/
+/* mit KI oft aufgeräumt */
